@@ -16,14 +16,11 @@ def check_brackets(brackets_row: str) -> bool:
             op_list.append(i)
         elif i == ')':
             cl_counter += 1
-            if len(op_list)>0:
+            if op_list:
                 op_list.pop()
             else:
                 return False
-    if op_counter != cl_counter:
-        return False
-    else:
-        return True
+    return False if op_counter != cl_counter else True
 
 
 if __name__ == '__main__':
