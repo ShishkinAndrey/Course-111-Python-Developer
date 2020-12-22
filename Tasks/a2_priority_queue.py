@@ -30,7 +30,7 @@ def dequeue() -> Any:
     :return: dequeued element
     """
     items_list.pop(-1)
-    return None if len(queue_priority) == 0 else queue_priority.pop(-1)
+    return None if not queue_priority else queue_priority.pop(-1)
 
 
 def peek(ind: int = 0, priority: int = 0) -> Any:
