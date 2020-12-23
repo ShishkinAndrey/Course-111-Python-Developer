@@ -31,6 +31,6 @@ def sinx(x: Union[int, float]) -> float:
     for i in count(start=0):
         sum_ += item(i)
         current_value = item(i)
-        if current_value < DELTA:
+        if abs(current_value) < DELTA:
             return sum_
 
