@@ -3,7 +3,7 @@ My little Stack
 """
 from typing import Any
 
-
+my_stack = [] #Вершина стека справа
 def push(elem: Any) -> None:
     """
     Operation that add element to stack
@@ -12,6 +12,7 @@ def push(elem: Any) -> None:
     :return: Nothing
     """
     print(elem)
+    my_stack.append(elem)
     return None
 
 
@@ -21,7 +22,8 @@ def pop() -> Any:
 
     :return: popped element
     """
-    return None
+    return None if len(my_stack) == 0 else my_stack.pop(-1)
+
 
 
 def peek(ind: int = 0) -> Any:
@@ -32,7 +34,7 @@ def peek(ind: int = 0) -> Any:
     :return: peeked element or None if no element in this place
     """
     print(ind)
-    return None
+    return None if ind >= len(my_stack) else my_stack[-1 - ind]
 
 
 def clear() -> None:
@@ -41,4 +43,26 @@ def clear() -> None:
 
     :return: None
     """
+    my_stack.clear()
     return None
+
+
+if __name__ == '__main__':
+    print(my_stack)
+    push(10)
+    print(my_stack)
+    push(20)
+    print(my_stack)
+
+    # clear()
+    print(my_stack)
+    push(6)
+    print(my_stack)
+
+    # print(pop())
+    print(my_stack)
+
+
+    print(peek(0))
+    print(peek(1))
+    print(peek(2))
