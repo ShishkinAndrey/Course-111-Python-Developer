@@ -13,8 +13,15 @@ def ex(x: Union[int, float]) -> float:
     :param x: x value
     :return: e^x value
     """
-    print(x)
-    return 0
+    def item(n):
+        '''Подсчет очередного элемента бесконечного ряда Тейлора для e^x'''
+        return (x ** n) /factorial(n)
+    sum_ = 0
+    for i in count(start=0):
+        sum_ += item(i)
+        current_value = item(i)
+        if abs(current_value) < DELTA:
+            return sum_
 
 
 def sinx(x: Union[int, float]) -> float:
