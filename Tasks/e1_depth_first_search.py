@@ -18,7 +18,6 @@ def dfs(g: nx.Graph, start_node: Hashable) -> List[Hashable]:
     visited[start_node] = True
     for neighbor in g[start_node]:
         d.append(neighbor)
-
     while d:
         print(d)
         print(visited)
