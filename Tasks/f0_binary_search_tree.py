@@ -4,8 +4,8 @@ or with dicts (smth like {'key': 0, value: 123, 'left': {...}, 'right':{...}})
 """
 
 from typing import Any, Optional, Tuple
-# import networkx as nx
-
+import networkx as nx
+bst = {}
 
 def insert(key: int, value: Any) -> None:
     """
@@ -15,9 +15,29 @@ def insert(key: int, value: Any) -> None:
     :param value: value associated with key
     :return: None
     """
-    print(key, value)
-    return None
+#     def _insert(bin_tree: dict):
+#         if not bin_tree:
+#             bin_tree = {
+#                 'key' == key,
+#                 'value' == value,
+#                 'left' == {},
+#                 'right' == {}
+#             }
+#         else:
+#             new_bin_tree = bin_tree['left'] if key <= bin_tree['key'] else bin_tree['right']
+#             _insert(new_bin_tree)
+#     _insert(bst)
 
+    def insert_(tree):
+        if tree is None:
+            tree = {'key': key, 'left': {}, 'right': {}}
+        elif key <= tree['key']:
+            btree= tree['left']
+        else:
+            btree = tree['right']
+        insert_(btree)
+
+    insert_(bst)
 
 def remove(key: int) -> Optional[Tuple[int, Any]]:
     """
