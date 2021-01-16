@@ -46,13 +46,21 @@ def remove(key: int) -> Optional[Tuple[int, Any]]:
     def _delete(root: dict, target: int):
         # Сравнивает ключи и находим target
         if target == root['key']:
-            return (root.pop('key'), root.pop('value'))
+            removed_key = root.pop('key')
+            removed_value = root.pop('value')
+            root.update(root.pop('right'))
+            return (removed_key, removed_value)
+
         elif root['key'] < target:
             if 'right' in root.keys():
                 return _delete(root['right'], target)
+            else:
+                raise KeyError('Remove of non-existing key should be erroneous.')
         elif root['key'] > target:
             if 'left' in root.keys():
                 return _delete(root['left'], target)
+            else:
+                raise KeyError('Remove of non-existing key should be erroneous.')
     return _delete(bst, key)
 
 
@@ -96,8 +104,8 @@ if __name__ == '__main__':
     insert(11, 324)
     insert(-3, 325)
     print(bst)
-    print(find(11))
-    # print(remove(-3))
+    # print(find(11))
+    print(remove(2))
     # clear()
 
     print(bst)
