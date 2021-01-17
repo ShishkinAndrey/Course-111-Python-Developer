@@ -44,23 +44,29 @@ def remove(key: int) -> Optional[Tuple[int, Any]]:
     :return: deleted (key, value) pair or None
     """
     def _delete(root: dict, target: int):
-        # Сравнивает ключи и находим target
+        # Сравнивает ключи,находим target и удаляем
+        if not root:
+            return None
         if target == root['key']:
             removed_key = root.pop('key')
             removed_value = root.pop('value')
-            root.update(root.pop('right'))
+            if 'left' in root.keys():
+                   root.update(root.pop('left'))
+            elif 'right' in root.keys():
+                   root.update(root.pop('right'))
             return (removed_key, removed_value)
-
         elif root['key'] < target:
             if 'right' in root.keys():
                 return _delete(root['right'], target)
             else:
-                raise KeyError('Remove of non-existing key should be erroneous.')
+                raise KeyError("Do not forget about deleting non-existing keys. "
+                "I think that deleting of non-existing keys should be silent, unlike search.")
         elif root['key'] > target:
             if 'left' in root.keys():
                 return _delete(root['left'], target)
             else:
-                raise KeyError('Remove of non-existing key should be erroneous.')
+                raise KeyError("Do not forget about deleting non-existing keys. "
+                "I think that deleting of non-existing keys should be silent, unlike search.")
     return _delete(bst, key)
 
 
@@ -98,14 +104,15 @@ def clear() -> None:
     return None
 
 if __name__ == '__main__':
-    insert(0,2)
-    insert(1, 12)
+    insert(1,2)
+    insert(0, 12)
     insert(2, 323)
-    insert(11, 324)
-    insert(-3, 325)
+    insert(-1, 324)
+    insert(3, 325)
     print(bst)
     # print(find(11))
-    print(remove(2))
+    print(remove(1))
+    # print(remove(42))
     # clear()
 
     print(bst)
