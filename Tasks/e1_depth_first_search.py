@@ -12,12 +12,11 @@ def dfs(g: nx.Graph, start_node: Hashable) -> List[Hashable]:
     :param start_node: starting node of search
     :return: list of nodes in the visited order
     """
-    path = [start_node] #пройденный путь с начальной вершиной
+    path = [] #пройденный путь
     d = deque() #стек
     visited = {node: False for node in g.nodes}
     visited[start_node] = True
-    for neighbor in g[start_node]:
-        d.append(neighbor)
+    d.append(start_node)
     while d:
         current_node = d.pop()
         visited[current_node] = True
