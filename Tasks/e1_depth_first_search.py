@@ -19,13 +19,11 @@ def dfs(g: nx.Graph, start_node: Hashable) -> List[Hashable]:
     for neighbor in g[start_node]:
         d.append(neighbor)
     while d:
-        print(d)
-        print(visited)
         current_node = d.pop()
         visited[current_node] = True
         path.append(current_node)
         for neighbor in g[current_node]:
-            if visited[neighbor] == False and neighbor not in d:
+            if not visited[neighbor]:
                 d.append(neighbor)
     return path
 
