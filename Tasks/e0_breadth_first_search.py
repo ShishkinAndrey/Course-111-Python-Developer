@@ -18,18 +18,15 @@ def bfs(g: nx.Graph, start_node: Hashable) -> List[Hashable]:
     """
     visited = {node: False for node in g.nodes} #словарь непосещенных вершин
     d = deque() #поддоженные вершины
-    path = [start_node]
+    path = []
     visited[start_node] = True
-    for neighbor in g[start_node]:
-        d.append(neighbor)
+    d.append(start_node)
     while d:
-        print(d)
-        print(visited)
         current_node = d.popleft()
         visited[current_node] = True
         path.append(current_node)
         for neighbor in g[current_node]:
-            if visited[neighbor] == False and neighbor not in d:
+            if not visited[neighbor] and neighbor not in d:
                 d.append(neighbor)
     return path
 
