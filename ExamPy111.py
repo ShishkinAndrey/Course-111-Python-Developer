@@ -119,8 +119,10 @@ def task2(lst_with_players: list, k: int):
     '''
     if len(lst_with_players) == 1:
         return lst_with_players
+    elif k > lst_with_players(lst_with_players):
+        pass
     lst_with_players.pop(k-1)
-
+    current_index = k
     return task2(lst_with_players, k)
 
 if __name__ == '__main__':
