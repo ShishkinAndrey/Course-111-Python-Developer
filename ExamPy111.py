@@ -109,8 +109,19 @@ def task5(lst_words):
     return consensus_str
 
 
+def task2(lst_with_players: list, k: int):
+    '''
+    Дано N человек, считалка из K слогов. Считалка начинает считать с первого человека.
+    Когда считалка досчитывает до k-го слога, человек, на котором она остановилась, вылетает.
+    Игра происходит до тех пор, пока не останется последний человек.
+    Для данных N и К дать номер последнего оставшегося человека.
+    :return:
+    '''
+    if len(lst_with_players) == 1:
+        return lst_with_players
+    lst_with_players.pop(k-1)
 
-
+    return task2(lst_with_players, k)
 
 if __name__ == '__main__':
     g = nx.Graph()
@@ -126,4 +137,5 @@ if __name__ == '__main__':
     # ---------------------------------
     # print(task6([(10,12),(13,15),(12,13),(15,18)]))
 
-    task5(['ATTA','ACTA','AGCA','ACAA'])
+    # task5(['ATTA','ACTA','AGCA','ACAA'])
+    task2([1,2,3,4,5,6],3)
