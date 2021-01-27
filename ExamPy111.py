@@ -87,6 +87,30 @@ def task6(lst_time):
     return 'Одной ракеты хватит, чтобы удовлетворить все заявки на этот день'
 
 
+def task5(lst_words):
+    '''
+    Для входного списка из N строк одинаковой длины построить консенсус-строку
+    :param lst_words: список строк
+    :return: консенсус-строку
+    '''
+    consensus_str = ''
+    dict_letter = dict()
+    for j in range(len(lst_words[0])):
+        for i in lst_words:
+            if i[j] not in dict_letter:
+                dict_letter[i[j]] = 1
+            else:
+                dict_letter[i[j]] += 1
+        max_ = max(dict_letter.values())
+        for k in dict_letter:
+            if dict_letter[k] == max_:
+                consensus_str += k
+        dict_letter.clear()
+    return consensus_str
+
+
+
+
 
 if __name__ == '__main__':
     g = nx.Graph()
@@ -95,9 +119,11 @@ if __name__ == '__main__':
                       ('B', 'C'),
                       ('C', 'D'),
                       ('F', 'G')])
-    print(task3(g))
+    # print(task3(g))
     #---------------------------------
     field_ = np.array([[2, 7, 9, 3], [12, 4, 1, 9], [1, 5, 2, 5]])
-    print(task4(field_))
+    # print(task4(field_))
     # ---------------------------------
-    print(task6([(10,12),(13,15),(12,13),(15,18)]))
+    # print(task6([(10,12),(13,15),(12,13),(15,18)]))
+
+    task5(['ATTA','ACTA','AGCA','ACAA'])
